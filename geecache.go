@@ -56,11 +56,12 @@ func (g *Group) Get(key string) (ByteView, error) {
 	if v, ok := g.mainCache.get(key); ok {
 		log.Println("[GeeCache] hit")
 		return v, nil
+	} else {
+		return g.load(key)
 	}
-	return g.load(key)
 }
 
-func (g *Group) load(key string) (value ByteView, err error) {
+func (g *Group) load(key string) (ByteView, error) {
 	return g.getLocally(key)
 }
 
