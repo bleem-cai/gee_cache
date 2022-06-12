@@ -40,7 +40,7 @@ func (p *HTTPPool) Log(foamat string, v ...interface{}) {
 	log.Printf("[Server %s] %s", p.self, fmt.Sprintf(foamat, v...))
 }
 
-func (p *HTTPPool) ServeHttp(w http.ResponseWriter, r *http.Request) {
+func (p *HTTPPool) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// 判断访问路径的前缀是否是 basePath，不是返回错误
 	if !strings.HasPrefix(r.URL.Path, p.basePath) {
 		panic("HTTPPool serving unexpected path: " + r.URL.Path)
